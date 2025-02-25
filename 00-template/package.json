@@ -2,6 +2,9 @@
   "name": "piraeus-template",
   "version": "1.0.0",
   "license": "MIT",
+  "scripts": {
+    "dev": "concurrently -k \"tsc -p ./src/server -w\" \"nodemon ./dist/server/server.js\""
+  },
   "dependencies": {
     "socket.io": "^4.8.1"
   },
