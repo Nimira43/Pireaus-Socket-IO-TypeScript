@@ -1,5 +1,8 @@
 {
   "name": "piraeus-template",
   "version": "1.0.0",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "^4.8.1"
+  }
 }
