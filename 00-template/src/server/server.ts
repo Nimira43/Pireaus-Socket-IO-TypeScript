@@ -6,7 +6,7 @@ const server = createServer()
 const io = new Server(server)
 
 io.on('connection', (socket) => {
-  console.log('User connected : ' + socket.id)
+  console.log('User is connected : ' + socket.id)
 })
 
 server.listen(PORT, () => {
