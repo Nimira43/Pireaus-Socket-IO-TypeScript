@@ -6,6 +6,7 @@
     "dev": "concurrently -k \"tsc -p ./src/server -w\" \"nodemon ./dist/server/server.js\""
   },
   "dependencies": {
+    "express": "^4.21.2",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
