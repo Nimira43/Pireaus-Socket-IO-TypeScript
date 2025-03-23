@@ -15,18 +15,9 @@
     }
   </script>
 
-
 </head>
 
 <body>
-  <h1 class="logo">Piraes II</h1>
-  <script src="socket.io/socket.io.js"></script>
-  <script>
-    const socket = io()
-
-    socket.on('connect', () => {
-      document.body.innerText = 'Connected : ' + socket.id
-    })
-  </script>
+  <script type="module" src="client.js"></script> 
 </body>
 </html>
