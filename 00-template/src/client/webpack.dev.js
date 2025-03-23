@@ -18,7 +18,13 @@ module.exports = {
   },
   entry: './src/client/client.ts',
   module: {
-
+    rules: [
+      {
+        text: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
   },
   resolve: {
 
