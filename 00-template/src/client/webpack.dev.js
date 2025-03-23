@@ -1,4 +1,4 @@
-const path = reuire('path')
+const path = require('path')
 
 module.exports = {
   mode: 'development',
@@ -20,7 +20,7 @@ module.exports = {
   module: {
     rules: [
       {
-        text: /\.tsx?$/,
+        test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/
       }
