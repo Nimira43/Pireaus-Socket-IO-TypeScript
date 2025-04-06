@@ -11,6 +11,9 @@ const server = (0, http_1.createServer)(app);
 const io = new socket_io_1.Server(server);
 io.on('connection', (socket) => {
     console.log('User is connected : ' + socket.id);
+    socket.on('disconnect', () => {
+        console.log('socket disconnected : ' + socket.id);
+    });
 });
 server.listen(PORT, () => {
     console.log('Server is listening on Port ' + PORT);
