@@ -9,7 +9,7 @@
 }
 
 :root {
-  --primary: #078e07;
+  --primary: #ff4500;
   --light: #fffcfa;
   --dark: #111;
   --black: #000;
@@ -43,7 +43,7 @@ body {
   letter-spacing: 0.1rem;
   margin: 2rem 0;
   box-shadow:
-    0 0.25rem 1.5rem rgba(7, 141, 7, 0.75),
+    0 0.25rem 1.5rem rgba(255, 68, 0, 0.75),
     inset 0 0.75rem 1.5rem rgba(0, 0, 0, 0.75);
   animation:
     shimmer 2s infinite ease-in-out,
@@ -53,7 +53,7 @@ body {
 @keyframes shimmer {
   0% {
     box-shadow:
-      0 0.25rem 1.5rem rgba(7, 141, 7, 0.75),
+      0 0.25rem 1.5rem rgba(255, 68,0, 0.75),
       inset 0 0.75rem 1.5rem rgba(0, 0, 0, 0.75);
   }
 
