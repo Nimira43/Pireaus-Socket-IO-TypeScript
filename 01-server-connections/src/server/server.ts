@@ -15,9 +15,11 @@ io.on('connection', (socket) => {
   console.log('User is connected : ' + socket.id)
 
   socket.emit('message', 'Welcome = ' + socket.id)
+  socket.broadcast.emit('message', 'Everyone say welcome to ' + socket.id)
 
   socket.on('disconnect', () => {
     console.log('socket disconnected : ' + socket.id)
+    socket.broadcast.emit('message', socket.id + ' has now departed.')
   })
 })
 
