@@ -5,3 +5,7 @@ const socket = io()
 socket.on('connect', () => {
   document.body.innerText = 'Connected Client: ' + socket.id
 })
+
+socket.on('message', (message) => {
+  document.body.innerHTML += '<p>' + message + '</p>'
+})
