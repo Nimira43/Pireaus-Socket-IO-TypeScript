@@ -10,9 +10,12 @@ app.use(express.static(path.join(__dirname, '../client')))
 
 const server = createServer(app)
 const io = new Server(server)
+let clientCount = 0
 
 io.on('connection', (socket) => {
+  clientCount++
   console.log('User is connected : ' + socket.id)
+  console.log('Number of Clients: ', clientCount)
 
   socket.emit('message', 'Welcome = ' + socket.id)
   socket.broadcast.emit('message', 'Everyone say welcome to ' + socket.id)
