@@ -8,4 +8,5 @@ socket.on('connect', () => {
 
 socket.on('message', (message) => {
   document.body.innerHTML += '<p>' + message + '</p>'
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 })

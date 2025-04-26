@@ -31,3 +31,7 @@ io.on('connection', (socket) => {
 server.listen(PORT, () => {
   console.log('Server is listening on Port ' + PORT)
 })
+
+setInterval(() => {
+  io.emit('message', Math.floor(Math.random() * 100))
+}, 1000)
