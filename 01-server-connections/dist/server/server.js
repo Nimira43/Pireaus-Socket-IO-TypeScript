@@ -17,7 +17,9 @@ io.on('connection', (socket) => {
     socket.emit('message', 'Welcome = ' + socket.id);
     socket.broadcast.emit('message', 'Everyone say welcome to ' + socket.id);
     socket.on('disconnect', () => {
+        clientCount--;
         console.log('socket disconnected : ' + socket.id);
+        console.log('Number of Clients: ', clientCount);
         socket.broadcast.emit('message', socket.id + ' has now departed.');
     });
 });
