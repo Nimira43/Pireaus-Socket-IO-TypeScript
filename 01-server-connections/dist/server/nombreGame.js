@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class nombreGame {
+class NombreGame {
     constructor() {
         this.LuckyNumbers = {};
     }
@@ -14,4 +14,4 @@ class nombreGame {
         return winners;
     }
 }
-exports.default = nombreGame;
+exports.default = NombreGame;

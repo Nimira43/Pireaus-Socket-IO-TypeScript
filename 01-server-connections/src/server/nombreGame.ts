@@ -1,4 +1,4 @@
-export default class nombreGame {
+export default class NombreGame {
   public LuckyNumbers: { [id: string]: number} = {}
 
   public GetWinners(number: number): string[] {
