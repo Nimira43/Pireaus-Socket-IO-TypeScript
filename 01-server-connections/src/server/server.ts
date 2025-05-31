@@ -2,6 +2,7 @@ import { createServer } from 'http'
 import { Server } from 'socket.io'
 import * as express from 'express'
 import * as path from 'path'
+import nombreGame from './nombreGame'
 
 const PORT = 3000
 
