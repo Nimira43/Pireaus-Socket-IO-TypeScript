@@ -2,8 +2,13 @@ import { io } from 'socket.io-client'
 
 const socket = io()
 
+let joined = false
+
 socket.on('connect', () => {
-  document.body.innerText = 'Connected Client: ' + socket.id
+  const uName = prompt('What is your name?') 
+  if (uName) {
+    socket.emit('joining', uName)
+  }
 })
 
 socket.on('disconnect', (message) => {
@@ -11,6 +16,13 @@ socket.on('disconnect', (message) => {
 })
 
 socket.on('message', (message) => {
-  document.body.innerHTML += '<p>' + message + '</p>'
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+  if (joined) {
+    document.body.innerHTML += '<p>' + message + '</p>'
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+  }
+})
+
+socket.on('joined', (message) => {
+  document.body.innerHTML = '<p>' + message + '</p>'
+  joined = true
 })
