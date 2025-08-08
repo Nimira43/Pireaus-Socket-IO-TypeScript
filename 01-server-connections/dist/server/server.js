@@ -14,24 +14,43 @@ const game = new nombreGame_1.default();
 const players = {};
 io.on('connection', (socket) => {
     console.log('User is connected : ' + socket.id);
-    game.LuckyNumbers[socket.id] = Math.floor(Math.random() * 20);
-    socket.emit('message', 'Welcome. Your lucky number is ' + game.LuckyNumbers[socket.id]);
-    socket.broadcast.emit('message', 'Everyone say welcome to ' + socket.id);
-    socket.on('disconnect', () => {
-        console.log('socket disconnected : ' + socket.id);
-        socket.broadcast.emit('message', socket.id + ' has now departed.');
-    });
-});
-server.listen(PORT, () => {
-    console.log('Server is listening on Port ' + PORT);
-});
-setInterval(() => {
-    const randomNumber = Math.floor(Math.random() * 20);
-    const winners = game.GetWinners(randomNumber);
-    if (winners.length) {
-        winners.forEach((w) => {
-            io.to(w).emit('message', 'You win with ' + randomNumber);
+    socket.on('joining', (uName) => {
+        if (players[uName]) {
+            players[uName].socketId = socket.id;
+            socket.emit('joined', 'Hello "' +
+                uName +
+                '", welcome back, your lucky number is ' +
+                players[uName].luckyNumber);
+        }
+        else {
+            players[uName] = {
+                luckyNumber: Math.floor(Math.random() * 20),
+                socketId: socket.id
+            };
+            socket.emit('joined', 'Hello new player named "' +
+                uName +
+                '", your lucky number is ' +
+                players[uName].luckyNumber);
+        }
+        game.LuckyNumbers[socket.id] = Math.floor(Math.random() * 20);
+        socket.emit('message', 'Welcome. Your lucky number is ' + game.LuckyNumbers[socket.id]);
+        socket.broadcast.emit('message', 'Everyone say welcome to ' + socket.id);
+        socket.on('disconnect', () => {
+            console.log('socket disconnected : ' + socket.id);
+            socket.broadcast.emit('message', socket.id + ' has now departed.');
         });
-    }
-    io.emit('message', randomNumber);
-}, 1000);
+    });
+    server.listen(PORT, () => {
+        console.log('Server is listening on Port ' + PORT);
+    });
+    setInterval(() => {
+        const randomNumber = Math.floor(Math.random() * 20);
+        const winners = game.GetWinners(randomNumber);
+        if (winners.length) {
+            winners.forEach((w) => {
+                io.to(w).emit('message', 'You win with ' + randomNumber);
+            });
+        }
+        io.emit('message', randomNumber);
+    }, 1000);
+});

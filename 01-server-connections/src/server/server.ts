@@ -16,6 +16,32 @@ const players: { [id: string]: { luckyNumber: number; socketId: string } } = {}
 
 io.on('connection', (socket) => {
   console.log('User is connected : ' + socket.id)
+  socket.on('joining', (uName) => {
+    if (players[uName]) {
+      players[uName].socketId = socket.id 
+      socket.emit(
+        'joined',
+        'Hello "' +
+          uName +
+          '", welcome back, your lucky number is ' +
+          players[uName].luckyNumber
+      )
+    } else {
+      players[uName] = {
+        luckyNumber: Math.floor(Math.random() * 20),
+        socketId: socket.id
+      }
+
+      socket.emit(
+        'joined',
+        'Hello new player named "' +
+          uName +
+          '", your lucky number is ' +
+          players[uName].luckyNumber
+      )
+    }
+
+
 
   game.LuckyNumbers[socket.id] = Math.floor(Math.random() * 20)
  
