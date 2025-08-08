@@ -11,6 +11,8 @@ app.use(express.static(path.join(__dirname, '../client')))
 const server = createServer(app)
 const io = new Server(server)
 const game = new NombreGame()
+const players: { [id: string]: { luckyNumber: number; socketId: string } } = {}
+
 
 io.on('connection', (socket) => {
   console.log('User is connected : ' + socket.id)
